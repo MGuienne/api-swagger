@@ -2,7 +2,7 @@ import functions_framework
 from google.cloud import storage
 from flask import Flask, send_file, jsonify, request
 import tempfile
-from flasgger import Swagger
+from flasgger import Swagger, swag_from
 
 # Flask app pour Swagger
 app = Flask(__name__)
@@ -74,4 +74,5 @@ def main(request):
 # pour test en local
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080, debug=True)
+
 
