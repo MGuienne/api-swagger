@@ -12,6 +12,34 @@ bucket_name = "meteo_opendata"
 folder_prefix = "meteo/"
 
 @app.route("/get_meteo_data", methods=["GET"])
+
+@swag_from({
+    'tags': ['Meteo'],
+    'parameters': [
+        {
+            'name': 'filename',
+            'in': 'query',
+            'type': 'string',
+            'required': True,
+            'description': 'Nom du fichier à télécharger depuis le bucket GCS (dossier meteo/)'
+        }
+    ],
+    'responses': {
+        200: {
+            'description': 'Fichier téléchargé avec succès (retourné en pièce jointe)'
+        },
+        400: {
+            'description': "Paramètre manquant"
+        },
+        404: {
+            'description': "Fichier non trouvé"
+        },
+        500: {
+            'description': "Erreur serveur"
+        }
+    }
+})
+
 def get_transport_data():
     try:
         filename = request.args.get("filename")
@@ -46,3 +74,4 @@ def main(request):
 # pour test en local
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080, debug=True)
+
