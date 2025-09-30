@@ -1,4 +1,4 @@
 functions-framework==3.*
-google-cloud-storage
-flask
-flasgger
+flask==2.3.3
+google-cloud-storage==2.14.0
+flasgger==0.9.7b2
